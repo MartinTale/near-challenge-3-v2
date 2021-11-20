@@ -3,7 +3,7 @@ import { PostedMessage, messages } from './model';
 // --- contract code goes below
 
 // The maximum number of latest messages the contract returns.
-const MESSAGE_LIMIT = 100;
+const MESSAGE_LIMIT = 10000;
 
 /**
  * Adds a new message under the name of the sender's account id.\

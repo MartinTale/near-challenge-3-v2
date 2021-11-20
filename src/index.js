@@ -104,7 +104,19 @@ function setAvatar(avatar) {
 }
 
 function renderAvatars(avatars) {
-  const avatarEntries = Object.entries(avatars);
+  const avatarEntriesUnsorted = Object.entries(avatars);
+
+  const avatarEntries = avatarEntriesUnsorted.sort((a, b) => {
+    if (a[0] > b[0]) {
+      return 1;
+    }
+    if (a[0] < b[0]) {
+      return -1;
+    }
+
+    return 0;
+  });
+
   const avatarContainer = document.querySelector(".user-list");
   let avatarHTML = "";
   for (let i = 0; i < avatarEntries.length; i += 1) {
@@ -129,6 +141,8 @@ async function fetchGreeting() {
 
   if (avatars[window.accountId]) {
     setAvatar(avatars[window.accountId]);
+  } else {
+    setAvatar(Date.now());
   }
   renderAvatars(avatars);
   // document.querySelectorAll('[data-behavior=greeting]').forEach(el => {
